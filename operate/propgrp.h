@@ -40,24 +40,22 @@ public:
 	};
 
 	PropGrp (const QString &name = "", Properties prop = PropBottom, QWidget *parent = 0);
-	static QString propname[PropBottom], quantity[PropBottom];
-	static double UpperLimit[PropBottom], LowerLimit[PropBottom];
+	static QString propname[PropBottom];
 #define ERR_NOERROR		("<font color=blue>" + tr ("The value is in the normal range.") + "</font>")
-#define ERR_TOOSMALL		("<font color=red>" + tr ("The value is below the lower limit.") + "</font>")
+#define ERR_TOOSMALL	("<font color=red>" + tr ("The value is below the lower limit.") + "</font>")
 #define ERR_TOOBIG		("<font color=red>" + tr ("The value is above the upper limit.") + "</font>")
 
 public slots:
 	void RefreshData (const double value);
 
 signals:
-	void PushResult (const int result, const PropGrp::Properties prop);
+//	void PushCombo (PropGrp::PropGroups prop, const QString &data);
 
 private:
 	QLabel *label;
 	QLabel *data;
 	QLabel *error;
 	Properties property;
-	void HandleResult (const int result);
 };
 
 #endif /* _PROPGRP_H */

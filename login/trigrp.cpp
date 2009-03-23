@@ -66,12 +66,8 @@ void TriGrp::Check (const QString &input)
 	}
 	switch (group) {
 		case GrpNum:
-			if (!((input.length() == 3 || input.length() == 4)
-						&& (input.at(0) == 'Q' || input.at(0) == 'S' || input.at(0) == 'M' || input.at(0) == 'X' ||
-							input.at(0) == 'q' || input.at(0) == 's' || input.at(0) == 'm' || input.at(0) == 'x')
-						&& input.at(1) == '-'
-						&& input.at(2).isDigit()
-						&& (input.length() == 3 || input.at(3).isDigit()))) {
+			if (!(input.length() == 5 && input.at(0).isLetter() && input.at(1).isLetter() && input.at(2).isDigit()
+						&& input.at(3).isDigit() && input.at(4).isDigit())) {
 				error->setText (ERR_SYNTAX);
 				emit PushCombo (group, pull);
 				return;
@@ -80,21 +76,21 @@ void TriGrp::Check (const QString &input)
 			emit PushCombo (group, input);
 			return;
 		case GrpName:
-//			if (!(input.length() == 5 && input.at(0).isLetter() && input.at(1).isLetter() && input.at(2).isLetter()
-//						&& input.at(3).isLetter() && input.at(4).isLetter())) {
-//				error->setText (ERR_SYNTAX);
-//				emit PushCombo (group, pull);
-//				return;
-//			}
+			if (!(input.length() == 5 && input.at(0).isLetter() && input.at(1).isLetter() && input.at(2).isLetter()
+						&& input.at(3).isLetter() && input.at(4).isLetter())) {
+				error->setText (ERR_SYNTAX);
+				emit PushCombo (group, pull);
+				return;
+			}
 			error->setText (ERR_CONFIRMED);
 			emit PushCombo (group, input);
 			return;
 		case GrpBatch:
-//			if (input.length() != 4) {
-//				error->setText (ERR_NOBATCH);
-//				emit PushCombo (group, pull);
-//				return;
-//			}
+			if (input.length() != 4) {
+				error->setText (ERR_NOBATCH);
+				emit PushCombo (group, pull);
+				return;
+			}
 			error->setText (ERR_CONFIRMED);
 			emit PushCombo (group, input);
 			return;

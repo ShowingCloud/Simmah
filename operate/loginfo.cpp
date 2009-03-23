@@ -17,7 +17,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QTimer>
-#include <QDateTime>
+#include <QTime>
 #include <QDebug>
 
 #include "operate/loginfo.h"
@@ -40,20 +40,16 @@ LogInfo::LogInfo (QWidget *parent)
 	timer->start (1000);
 	ShowTime ();
 
-	QHBoxLayout *hbox1 = new QHBoxLayout;
-	QHBoxLayout *hbox2 = new QHBoxLayout;
-	QVBoxLayout *vbox = new QVBoxLayout;
-	hbox1->addWidget (number);
-	hbox1->addWidget (name);
-	hbox1->addWidget (batch);
-	hbox2->addWidget (device);
-	hbox2->addWidget (serial);
-	hbox2->addWidget (time);
-	vbox->addLayout (hbox1);
-	vbox->addLayout (hbox2);
-	setLayout (vbox);
+	QHBoxLayout *hbox = new QHBoxLayout;
+	hbox->addWidget (number);
+	hbox->addWidget (name);
+	hbox->addWidget (batch);
+	hbox->addWidget (device);
+	hbox->addWidget (serial);
+	hbox->addWidget (time);
+	setLayout (hbox);
 
-//	setFocusProxy ();
+	setFocusProxy (number);
 }
 
 void LogInfo::UpdateLogInfo (const QString &s_num, const QString &s_name, const QString &s_batch, const int deviceid, const int serialid)
@@ -70,5 +66,5 @@ void LogInfo::UpdateLogInfo (const QString &s_num, const QString &s_name, const 
 
 void LogInfo::ShowTime ()
 {
-	time->setText (QDateTime::currentDateTime ().toString (Qt::SystemLocaleLongDate));
+	time->setText (QTime::currentTime().toString ("hh:mm:ss"));
 }

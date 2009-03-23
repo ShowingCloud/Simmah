@@ -59,27 +59,27 @@
 <context>
     <name>LogInfo</name>
     <message>
-        <location filename="../operate/loginfo.cpp" line="61"/>
+        <location filename="../operate/loginfo.cpp" line="57"/>
         <source>Worker No.: </source>
         <translation>Arbeiternummer: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="62"/>
+        <location filename="../operate/loginfo.cpp" line="58"/>
         <source>Worker Name: </source>
         <translation>Arbeiter Name: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="63"/>
+        <location filename="../operate/loginfo.cpp" line="59"/>
         <source>Batch No.: </source>
         <translation>Batchnummer: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="64"/>
+        <location filename="../operate/loginfo.cpp" line="60"/>
         <source>Device ID: </source>
         <translation>Gerätnummer: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="67"/>
+        <location filename="../operate/loginfo.cpp" line="63"/>
         <source>Serial ID: </source>
         <translation>Seriennummer: </translation>
     </message>
@@ -133,21 +133,6 @@
         <translation>Betrieb (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
-        <source>You have logged out.</source>
-        <translation>Sie haben sich aus.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="83"/>
-        <source>You don&apos;t have this premission.</source>
-        <translation>Sie verfügen nicht über diese Berechtigung.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="91"/>
-        <source>You have not yet logged in.</source>
-        <translation>Sie haben noch nicht eingeloggt.</translation>
-    </message>
-    <message>
         <source>&amp;Details</source>
         <translation type="obsolete">&amp;Detail</translation>
     </message>
@@ -164,74 +149,55 @@
 <context>
     <name>Operate</name>
     <message>
-        <location filename="../operate/operate.cpp" line="28"/>
+        <location filename="../operate/operate.cpp" line="27"/>
         <source>5V Partial Voltage</source>
         <translation>5V Teilweise Spannung</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="29"/>
+        <location filename="../operate/operate.cpp" line="28"/>
         <source>Antenna Driver Voltage</source>
         <translation>Antenne Treiber Spannung</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="30"/>
+        <location filename="../operate/operate.cpp" line="29"/>
         <source>Resonant Peak Voltage</source>
         <translation>Resonante Spitzenspannung</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="31"/>
+        <location filename="../operate/operate.cpp" line="30"/>
         <source>Antenna Output 1</source>
         <translation>Antennenausgang 1</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="32"/>
+        <location filename="../operate/operate.cpp" line="31"/>
         <source>Antenna Output 2</source>
         <translation>Antennenausgang 2</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="33"/>
+        <location filename="../operate/operate.cpp" line="32"/>
         <source>Antenna Frequency 1</source>
         <translation>Antenne Frequenz 1</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="34"/>
+        <location filename="../operate/operate.cpp" line="33"/>
         <source>Antenna Frequency 2</source>
         <translation>Antenne Frequenz 2</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="35"/>
+        <location filename="../operate/operate.cpp" line="34"/>
         <source>Working Current</source>
         <translation>Arbeitsaktuelle</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="48"/>
-        <source>&amp;Details</source>
-        <translation>&amp;Detail</translation>
-    </message>
-    <message>
-        <source>Pa&amp;rameters</source>
-        <translation type="obsolete">Pa&amp;rameters</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="113"/>
-        <source>Qualified</source>
-        <translation>Fertig</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="114"/>
-        <source>Not Qualified</source>
-        <translation>Unfertig</translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../preferences/preferences.cpp" line="32"/>
+        <location filename="../preferences/preferences.cpp" line="30"/>
         <source>Select the Window Style</source>
         <translation>Wählen Sie das Fenster Style</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences.cpp" line="53"/>
+        <location filename="../preferences/preferences.cpp" line="39"/>
         <source>Check to Enable the Testing Items</source>
         <translation>Überprüfen Sie aktivieren die Prüfung Artikel</translation>
     </message>
@@ -275,17 +241,17 @@
         <translation type="obsolete">Der Wert wird in der normalen Strecke.</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="45"/>
+        <location filename="../operate/propgrp.h" line="44"/>
         <source>The value is in the normal range.</source>
         <translation>Der Wert wird in der normalen Strecke.</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="46"/>
+        <location filename="../operate/propgrp.h" line="45"/>
         <source>The value is below the lower limit.</source>
         <translation>Der Wert ist unter dem unteren Grenzwert.</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="47"/>
+        <location filename="../operate/propgrp.h" line="46"/>
         <source>The value is above the upper limit.</source>
         <translation>Der Wert ist über dem oberen Grenzwert.</translation>
     </message>

@@ -51,7 +51,7 @@ SerialPort::SerialPort (QObject *parent)
 
 void SerialPort::run ()
 {
-	int nread, fd = serialport->handle ();
+	int lastserial = -1, lastlastserial = -1, nread, fd = serialport->handle ();
 	QDataStream serial (serialport);
 	SerialProtocol data;
 	fd_set fdset;
@@ -64,19 +64,17 @@ void SerialPort::run ()
 	while (true) {
 		tv.tv_sec = 0;
 		tv.tv_usec = 0;
-		do {
-			nread = select (1, &fdset, (fd_set *) NULL, (fd_set *) NULL, &tv);
-			ioctl (fd, FIONREAD, &nread);
-			if (nread > 18) read (fd, tmp, nread - 18);
-		} while (nread != 18);
-
+		nread = select (1, &fdset, (fd_set *) NULL, (fd_set *) NULL, &tv);
+		ioctl (fd, FIONREAD, &nread);
+		if (nread > 18) read (fd, tmp, nread - 18);
 		serial >> data;
-		if (data.SerialID && data.valid ()) {
-			tmpdata << data;
-
-		} else {
+		qDebug () << "abc";
+		lastlastserial = lastserial;
+		lastserial = data.SerialID;
+		if (lastserial != lastlastserial) {
+			serialdata << data;
+			lastserial = data.SerialID;
 			emit GotData ();
-			qDebug () << "abc";
 		}
 	}
 }
