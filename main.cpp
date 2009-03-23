@@ -31,7 +31,7 @@ int main (int argc, char **argv)
 	app.installTranslator (&translator);
 
 	MainWindow window;
-	window.setMinimumSize (1000, 700);
+	window.setMinimumSize (1250, 950);
 	window.show ();
 	return app.exec ();
 }

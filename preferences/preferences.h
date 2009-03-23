@@ -22,6 +22,8 @@
 #include "operate/propgrp.h"
 #include "common/loginout.h"
 
+#define ITEMS_IMAGE_FILE	"data/itemsimage.jpg"
+
 class QComboBox;
 class QCheckBox;
 class QGroupBox;
@@ -38,13 +40,14 @@ signals:
 	void ItemsChanged ();
 
 public slots:
-	void changestyle (const QString &stylename);
 	void itemchanged ();
+	void CheckAdministrator (QString &num);
 
 private:
-	QComboBox *styles;
 	QCheckBox *item[PropGrp::PropBottom];
 	LogInOut *loginout;
+	QGroupBox *groupitem;
+	QLabel *labelitem;
 };
 
 #endif /* _PREFERENCES_H */

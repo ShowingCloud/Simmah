@@ -25,14 +25,14 @@ Login::Login (QWidget *parent)
 	grp[TriGrp::GrpNum] = new TriGrp (tr ("Number"), TriGrp::GrpNum, this);
 	grp[TriGrp::GrpName] = new TriGrp (tr ("Name"), TriGrp::GrpName, this);
 	grp[TriGrp::GrpBatch] = new TriGrp (tr ("Batch"), TriGrp::GrpBatch, this);
-	ident = new Ident (this);
+//	ident = new Ident (this);
 	loginout = new LogInOut (false, this);
 
 	QVBoxLayout *vbox = new QVBoxLayout;
 	vbox->addWidget (grp[TriGrp::GrpNum]);
 	vbox->addWidget (grp[TriGrp::GrpName]);
 	vbox->addWidget (grp[TriGrp::GrpBatch]);
-	vbox->addWidget (ident);
+//	vbox->addWidget (ident);
 	vbox->addWidget (loginout);
 	setLayout (vbox);
 

@@ -24,6 +24,10 @@
 #include "common/loginout.h"
 #include "iooper/serialport.h"
 
+class QLabel;
+class QVBoxLayout;
+class QGroupBox;
+
 class Operate : public QWidget
 {
 	Q_OBJECT
@@ -35,11 +39,19 @@ public slots:
 	void logedin (QString &num, QString &name, QString &batch);
 	void NewData ();
 	void ItemsChanged ();
+//	void GotResult (const PropGrp::Properties prop);
+//	void ClearResult ();
+	void groupclicked (bool checked);
 
 private:
 	LogInfo *loginfo;
 	LogInOut *loginout;
+	QLabel *finallabel, *totalnumlabel, *totalbadlabel, *batchnumlabel, *batchbadlabel;
+	QVBoxLayout *operatebox;
+	QGroupBox *groupprop;
 	PropGrp *prop[PropGrp::PropBottom];
+	int total_num,total_bad, batch_num, batch_bad;
+	bool confirmed;
 };
 
 #endif /* _OPERATE_H */
