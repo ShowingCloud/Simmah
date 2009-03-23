@@ -32,8 +32,8 @@ public:
 	enum Tabs {
 		TabLogin = 0,
 		TabOperate,
-		TabDetails,
-		TabStatistics,
+//		TabDetails,
+//		TabStatistics,
 		TabPreferences,
 		TabBottom,
 	};
@@ -51,7 +51,7 @@ private:
 	Preferences *preferences;
 	ConfigFile *config;
 	SerialPort *serial;
-	static bool loginready;
+	static bool loginready, administrator;
 };
 
 #endif /* _MAIN_WINDOW_H */

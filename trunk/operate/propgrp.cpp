@@ -21,6 +21,13 @@
 #include "operate/propgrp.h"
 
 QString PropGrp::propname[PropGrp::PropBottom];
+double PropGrp::UpperLimit[PropGrp::PropBottom] = {6, 5.5, 0, 0, 0, 130, 130, 200},
+	PropGrp::LowerLimit[PropGrp::PropBottom] = {4, 4.5, 0, 0, 0, 100, 100, 75};
+//double PropGrp::UpperLimit[PropGrp::PropBottom] = {0, 5.5, 77, 5.5, 5.5, 137.5, 137.5, 0},
+//	PropGrp::LowerLimit[PropGrp::PropBottom] = {0, 4.5, 63, 4.5, 4.5, 112.5, 112.5, 0};
+//double PropGrp::UpperLimit[PropGrp::PropBottom] = {15, 15, 100, 15, 15, 500, 500, 1000},
+//	PropGrp::LowerLimit[PropGrp::PropBottom] = {0.1, 0.1, 30, 0.1, 0.1, 0, 0, 0};
+QString PropGrp::quantity[PropGrp::PropBottom] = {"V", "V", "V", "V", "V", "kHz", "kHz", "mA"};
 
 PropGrp::PropGrp (const QString &name, Properties prop, QWidget *parent)
 	: QWidget (parent)
@@ -47,56 +54,18 @@ PropGrp::PropGrp (const QString &name, Properties prop, QWidget *parent)
 	setFocusProxy (data);
 }
 
-void PropGrp::RefreshData (const double value)
+bool PropGrp::RefreshData (const double value)
 {
-	switch (property) {
-		case PropPartialV:
-			data->setText (QString ("%1 V").arg (value));
-			/* no check */
-			error->setText (ERR_NOERROR);
-			break;
-		case PropAntennaDriverV:
-			data->setText (QString ("%1 V").arg (value));
-			if (value > 5.5) error->setText (ERR_TOOBIG);
-			else if (value < 4.5) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropResonantVpp:
-			data->setText (QString ("%1 V").arg (value));
-			if (value > 77) error->setText (ERR_TOOBIG);
-			else if (value < 63) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropAntennaOutput1:
-			data->setText (QString ("%1 V").arg (value));
-			if (value > 5.5) error->setText (ERR_TOOBIG);
-			else if (value < 4.5) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropAntennaOutput2:
-			data->setText (QString ("%1 V").arg (value));
-			if (value > 5.5) error->setText (ERR_TOOBIG);
-			else if (value < 4.5) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropAntennaFreq1:
-			data->setText (QString ("%1 kHz").arg (value));
-			if (value > 137.5) error->setText (ERR_TOOBIG);
-			else if (value < 112.5) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropAntennaFreq2:
-			data->setText (QString ("%1 kHz").arg (value));
-			if (value > 137.5) error->setText (ERR_TOOBIG);
-			else if (value < 112.5) error->setText (ERR_TOOSMALL);
-			else error->setText (ERR_NOERROR);
-			break;
-		case PropWorkingCurrent:
-			data->setText (QString ("%1 mA").arg (value));
-			/* no check */
-			error->setText (ERR_NOERROR);
-			break;
-		default:
-			break;
+	data->setText (QString ("%1 " + quantity[property]).arg (value));
+
+	if (UpperLimit[property] == 0 && LowerLimit[property] == 0)
+		return true;
+
+	if (value > UpperLimit[property]) error->setText (ERR_TOOBIG);
+	else if (value < LowerLimit[property]) error->setText (ERR_TOOSMALL);
+	else {
+		error->setText (ERR_NOERROR);
+		return true;
 	}
+	return false;
 }

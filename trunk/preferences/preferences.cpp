@@ -25,43 +25,47 @@ Preferences::Preferences (QWidget *parent)
 {
 	int i;
 
-	styles = new QComboBox (this);
-	styles->addItems (QStyleFactory::keys ());
-	QVBoxLayout *boxstyle = new QVBoxLayout;
-	boxstyle->addWidget (styles);
-	QGroupBox *groupstyle = new QGroupBox (tr ("Select the Window Style"), this);
-	groupstyle->setLayout (boxstyle);
+	QVBoxLayout *boxitemwp = new QVBoxLayout;
+	QLabel *imgl = new QLabel (this);
+	QImage img (QString (ITEMS_IMAGE_FILE));
+	imgl->setPixmap(QPixmap::fromImage (img.scaledToWidth (1200)));
+	boxitemwp->addWidget (imgl);
 
-	QVBoxLayout *boxitem = new QVBoxLayout;
+	QGridLayout *boxitem = new QGridLayout;
 	for (i = 0; i < PropGrp::PropBottom; i++) {
-		item[i] = new QCheckBox (PropGrp::propname[i], this);
+		item[i] = new QCheckBox (PropGrp::propname[i]
+//				+ QString (":%1").arg (PropGrp::UpperLimit[i]) + " ~ "
+//				+ QString ("%1" + PropGrp::quantity[i]).arg (PropGrp::LowerLimit[i])
+				, this);
 		item[i]->setChecked (true);
-		boxitem->addWidget (item[i]);
+		item[i]->setFont (QFont ("Bitstream Sans", 25));
+		boxitem->addWidget (item[i], i / 4, i % 4);
 		connect (item[i], SIGNAL (stateChanged (int)), this, SLOT (itemchanged ()));
 	}
-	QGroupBox *groupitem = new QGroupBox (tr ("Check to Enable the Testing Items"), this);
-	groupitem->setLayout (boxitem);
+	boxitemwp->addLayout (boxitem);
+
+	groupitem = new QGroupBox (tr ("Check to Enable the Testing Items"), this);
+	groupitem->setLayout (boxitemwp);
+	groupitem->setVisible (false);
+
+	labelitem = new QLabel (this);
+	labelitem->setText (QString (tr ("You don't have the permission to choose the items.")));
+	labelitem->setFont (QFont ("Bitstream Sans", 35));
+	labelitem->setVisible (true);
 
 	loginout = new LogInOut (true, this);
 
 	QVBoxLayout *vbox = new QVBoxLayout;
 	QHBoxLayout *hbox = new QHBoxLayout;
-	hbox->addWidget (groupstyle);
-	hbox->addWidget (groupitem);
+	hbox->addWidget (groupitem, 95);
+	hbox->addWidget (labelitem, 95, Qt::AlignCenter);
 	vbox->addLayout (hbox);
 	vbox->addWidget (loginout);
 	setLayout (vbox);
 
 	setFocusProxy (loginout);
 
-	connect (styles, SIGNAL (activated (const QString &)), this, SLOT (changestyle (const QString &)));
-
 	itemchanged ();
-}
-
-void Preferences::changestyle (const QString &stylename)
-{
-	QApplication::setStyle (QStyleFactory::create (stylename));
 }
 
 void Preferences::itemchanged ()
@@ -72,4 +76,15 @@ void Preferences::itemchanged ()
 		itemstate[i] = item[i]->isChecked ();
 
 	emit this->ItemsChanged ();
+}
+
+void Preferences::CheckAdministrator (QString &num)
+{
+	if (num.at(0) == 'X' || num.at(0) == 'x') {
+		groupitem->setVisible (true);
+		labelitem->setVisible (false);
+	} else {
+		groupitem->setVisible (false);
+		labelitem->setVisible (true);
+	}
 }

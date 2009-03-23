@@ -27,7 +27,7 @@
 
 #include "iooper/serialport.h"
 
-QList <SerialProtocol> SerialPort::serialdata;
+SerialProtocol SerialPort::serialdata;
 
 SerialPort::SerialPort (QObject *parent)
 	: QThread (parent)
@@ -51,9 +51,9 @@ SerialPort::SerialPort (QObject *parent)
 
 void SerialPort::run ()
 {
-	int lastserial = -1, lastlastserial = -1, nread, fd = serialport->handle ();
+	int nread, r, fd = serialport->handle ();
 	QDataStream serial (serialport);
-	SerialProtocol data;
+//	SerialProtocol data;
 	fd_set fdset;
 	char tmp[1000];
 	struct timeval tv;
@@ -64,18 +64,15 @@ void SerialPort::run ()
 	while (true) {
 		tv.tv_sec = 0;
 		tv.tv_usec = 0;
-		nread = select (1, &fdset, (fd_set *) NULL, (fd_set *) NULL, &tv);
-		ioctl (fd, FIONREAD, &nread);
-		if (nread > 18) read (fd, tmp, nread - 18);
-		serial >> data;
-		qDebug () << "abc";
-		lastlastserial = lastserial;
-		lastserial = data.SerialID;
-		if (lastserial != lastlastserial) {
-			serialdata << data;
-			lastserial = data.SerialID;
-			emit GotData ();
-		}
+		do {
+			select (1, &fdset, (fd_set *) NULL, (fd_set *) NULL, &tv);
+			ioctl (fd, FIONREAD, &nread);
+			if (nread > 18) r = read (fd, tmp, nread - 18);
+			else r = 0;
+		} while (nread - r != 18);
+
+		serial >> serialdata;
+		emit GotData ();
 	}
 }
 

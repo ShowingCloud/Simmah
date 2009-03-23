@@ -18,6 +18,7 @@
 #define _SERIAL_PORT_H	1
 
 #include <QThread>
+#include <QQueue>
 
 #include "iooper/serialprotocol.h"
 
@@ -35,18 +36,25 @@ public:
 
 	static SerialProtocol GetLastData ()
 	{
-		return serialdata.back ();
+		return serialdata;
 	}
 
+/*	static void EmptyStack ()
+	{
+		serialstack.clear ();
+	}
+*/
 protected:
 	void run ();
 
 signals:
 	void GotData ();
 
+public slots:
+
 private:
 	QFile *serialport;
-	static QList <SerialProtocol> serialdata;
+	static SerialProtocol serialdata;
 };
 
 #endif /* _SERIAL_PORT_H */

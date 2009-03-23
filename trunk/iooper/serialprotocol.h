@@ -33,6 +33,11 @@ public:
 	quint16	AntennaFreq2;
 	quint16	WorkingCurrent;
 
+	bool valid ()
+	{
+		return (SerialID == 0);
+	}
+
 	friend QDataStream & operator >> (QDataStream &datastream, SerialProtocol &data)
 	{
 		datastream >> data.DeviceID
