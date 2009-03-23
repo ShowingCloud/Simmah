@@ -18,7 +18,7 @@
 
 #include "mainwindow.h"
 
-bool MainWindow::loginready = false, MainWindow::administrator = false;
+bool MainWindow::loginready = false;
 QTabWidget *MainWindow::tab = NULL;
 
 MainWindow::MainWindow ()
@@ -54,7 +54,6 @@ MainWindow::MainWindow ()
 
 	connect (login, SIGNAL (logedin (QString &, QString &, QString &)), operate, SLOT (logedin (QString &, QString &, QString &)));
 	connect (login, SIGNAL (logedin (QString &, QString &, QString &)), config, SLOT (UpdateConfig (QString &, QString &, QString &)));
-	connect (login, SIGNAL (logedin (QString &, QString &, QString &)), this, SLOT (CheckAdministrator (QString &, QString &, QString &)));
 	connect (preferences, SIGNAL (ItemsChanged ()), operate, SLOT (ItemsChanged ()));
 }
 
@@ -68,30 +67,13 @@ MainWindow::~MainWindow ()
 
 void MainWindow::TabChanged (int index)
 {
-	QMessageBox msgBox;
-
 	switch (index) {
 		case TabLogin:
 			setlogin (false);
-			msgBox.setText (tr ("You have logged out."));
-			msgBox.setFont (QFont ("Bitstream Sans", 18));
-			msgBox.exec ();
-			break;
-		case TabPreferences:
-			if (!administrator) {
-				tab->setCurrentIndex (TabOperate);
-				msgBox.setText (tr ("You don't have this premission."));
-				msgBox.setFont (QFont ("Bitstream Sans", 18));
-				msgBox.exec ();
-			}
 			break;
 		default:
-			if (!loginready) {
+			if (!loginready)
 				tab->setCurrentIndex (TabLogin);
-				msgBox.setText (tr ("You have not yet logged in."));
-				msgBox.setFont (QFont ("Bitstream Sans", 18));
-				msgBox.exec ();
-			}
 			break;
 	}
 }
@@ -102,12 +84,4 @@ void MainWindow::setlogin (bool logedin)
 
 	if (!logedin)
 		tab->setCurrentIndex (TabLogin);
-}
-
-void MainWindow::CheckAdministrator (QString &num, QString &name, QString &batch)
-{
-	if (num.at(0) == 'X' || num.at(0) == 'x')
-		administrator = true;
-	else
-		administrator = false;
 }

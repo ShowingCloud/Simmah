@@ -22,8 +22,6 @@
 #include "operate/propgrp.h"
 #include "common/loginout.h"
 
-#define ITEMS_IMAGE_FILE	"data/itemsimage.jpg"
-
 class QComboBox;
 class QCheckBox;
 class QGroupBox;

@@ -59,27 +59,27 @@
 <context>
     <name>LogInfo</name>
     <message>
-        <location filename="../operate/loginfo.cpp" line="61"/>
+        <location filename="../operate/loginfo.cpp" line="57"/>
         <source>Worker No.: </source>
         <translation>工号: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="62"/>
+        <location filename="../operate/loginfo.cpp" line="58"/>
         <source>Worker Name: </source>
         <translation>姓名: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="63"/>
+        <location filename="../operate/loginfo.cpp" line="59"/>
         <source>Batch No.: </source>
         <translation>批次号: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="64"/>
+        <location filename="../operate/loginfo.cpp" line="60"/>
         <source>Device ID: </source>
         <translation>设备号: </translation>
     </message>
     <message>
-        <location filename="../operate/loginfo.cpp" line="67"/>
+        <location filename="../operate/loginfo.cpp" line="63"/>
         <source>Serial ID: </source>
         <translation>流水号: </translation>
     </message>
@@ -133,21 +133,6 @@
         <translation>操作 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
-        <source>You have logged out.</source>
-        <translation>您已经登出。</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="83"/>
-        <source>You don&apos;t have this premission.</source>
-        <translation>您没有这个权限。</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="91"/>
-        <source>You have not yet logged in.</source>
-        <translation>您还未登录。</translation>
-    </message>
-    <message>
         <source>&amp;Details</source>
         <translation type="obsolete">详细状态 (&amp;D)</translation>
     </message>
@@ -164,74 +149,55 @@
 <context>
     <name>Operate</name>
     <message>
-        <location filename="../operate/operate.cpp" line="28"/>
+        <location filename="../operate/operate.cpp" line="27"/>
         <source>5V Partial Voltage</source>
         <translation>5V分压</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="29"/>
+        <location filename="../operate/operate.cpp" line="28"/>
         <source>Antenna Driver Voltage</source>
         <translation>天线驱动电压</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="30"/>
+        <location filename="../operate/operate.cpp" line="29"/>
         <source>Resonant Peak Voltage</source>
         <translation>谐振峰值电压</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="31"/>
+        <location filename="../operate/operate.cpp" line="30"/>
         <source>Antenna Output 1</source>
         <translation>天线输出1</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="32"/>
+        <location filename="../operate/operate.cpp" line="31"/>
         <source>Antenna Output 2</source>
         <translation>天线输出2</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="33"/>
+        <location filename="../operate/operate.cpp" line="32"/>
         <source>Antenna Frequency 1</source>
         <translation>天线频率1</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="34"/>
+        <location filename="../operate/operate.cpp" line="33"/>
         <source>Antenna Frequency 2</source>
         <translation>天线频率2</translation>
     </message>
     <message>
-        <location filename="../operate/operate.cpp" line="35"/>
+        <location filename="../operate/operate.cpp" line="34"/>
         <source>Working Current</source>
         <translation>工作电流</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="48"/>
-        <source>&amp;Details</source>
-        <translation>详细状态 (&amp;D)</translation>
-    </message>
-    <message>
-        <source>Pa&amp;rameters</source>
-        <translation type="obsolete">参数 (&amp;R)</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="113"/>
-        <source>Qualified</source>
-        <translation>合格</translation>
-    </message>
-    <message>
-        <location filename="../operate/operate.cpp" line="114"/>
-        <source>Not Qualified</source>
-        <translation>不合格</translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../preferences/preferences.cpp" line="32"/>
+        <location filename="../preferences/preferences.cpp" line="30"/>
         <source>Select the Window Style</source>
         <translation>选择窗口样式</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences.cpp" line="53"/>
+        <location filename="../preferences/preferences.cpp" line="39"/>
         <source>Check to Enable the Testing Items</source>
         <translation>选择需要启用的检测项目</translation>
     </message>
@@ -275,17 +241,17 @@
         <translation type="obsolete">数值处在正常范围内。</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="45"/>
+        <location filename="../operate/propgrp.h" line="44"/>
         <source>The value is in the normal range.</source>
         <translation>数值处在正常范围内。</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="46"/>
+        <location filename="../operate/propgrp.h" line="45"/>
         <source>The value is below the lower limit.</source>
         <translation>数值低于下限。</translation>
     </message>
     <message>
-        <location filename="../operate/propgrp.h" line="47"/>
+        <location filename="../operate/propgrp.h" line="46"/>
         <source>The value is above the upper limit.</source>
         <translation>数值高于上限。</translation>
     </message>

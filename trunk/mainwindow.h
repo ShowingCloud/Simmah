@@ -32,8 +32,8 @@ public:
 	enum Tabs {
 		TabLogin = 0,
 		TabOperate,
-//		TabDetails,
-//		TabStatistics,
+		TabDetails,
+		TabStatistics,
 		TabPreferences,
 		TabBottom,
 	};
@@ -43,7 +43,6 @@ public:
 
 public slots:
 	static void TabChanged (int index);
-	void CheckAdministrator (QString &num, QString &name, QString &batch);
 
 private:
 	static QTabWidget *tab;
@@ -52,7 +51,7 @@ private:
 	Preferences *preferences;
 	ConfigFile *config;
 	SerialPort *serial;
-	static bool loginready, administrator;
+	static bool loginready;
 };
 
 #endif /* _MAIN_WINDOW_H */

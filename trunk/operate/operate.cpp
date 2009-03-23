@@ -35,33 +35,18 @@ Operate::Operate (QWidget *parent)
 	PropGrp::propname[PropGrp::PropWorkingCurrent] = QString (tr ("Working Current"));
 
 	loginfo = new LogInfo (this);
-
-	finallabel = new QLabel (this);
-
-	QVBoxLayout *boxprop = new QVBoxLayout;
-	for (i = 0; i < PropGrp::PropBottom; i++) {
+	for (i = 0; i < PropGrp::PropBottom; i++)
 		prop[i] = new PropGrp (PropGrp::propname[i], (PropGrp::Properties) i, this);
-		boxprop->addWidget (prop[i]);
-		testresult[i] = false;
-		connect (prop[i], SIGNAL (PushResult (const int, const PropGrp::Properties)), this, SLOT (GotResult (const int, const PropGrp::Properties)));
-	}
-	groupprop = new QGroupBox (tr ("&Details"), this);
-	groupprop->setLayout (boxprop);
-	groupprop->setCheckable (true);
-	groupprop->setChecked (false);
-	connect (groupprop, SIGNAL (clicked (bool)), this, SLOT (groupclicked (bool)));
-
 	loginout = new LogInOut (true, this);
 
-	operatebox = new QVBoxLayout;
-	operatebox->addWidget (loginfo, 0);
-	operatebox->addWidget (finallabel, 0, Qt::AlignHCenter);
-	operatebox->addWidget (groupprop, 0);
-	operatebox->addWidget (loginout, 0);
-	setLayout (operatebox);
+	QVBoxLayout *vbox = new QVBoxLayout;
+	vbox->addWidget (loginfo);
+	for (i = 0; i < PropGrp::PropBottom; i++)
+		vbox->addWidget (prop[i]);
+	vbox->addWidget (loginout);
+	setLayout (vbox);
 
 	setFocusProxy (loginfo);
-	groupclicked (false);
 }
 
 void Operate::NewData ()
@@ -91,52 +76,5 @@ void Operate::ItemsChanged ()
 	int i;
 
 	for (i = 0; i < PropGrp::PropBottom; i++)
-		if (groupprop->isChecked ())
-			prop[i]->setVisible (Preferences::itemstate[i]);
-}
-
-void Operate::GotResult (const int result, const PropGrp::Properties prop)
-{
-	int i;
-	bool final = true;
-
-	if (result == 0) testresult[prop] = true;
-	else testresult[prop] = false;
-
-	for (i = 0; i < PropGrp::PropBottom; i++)
-		if (!testresult[i]) {
-			final = false;
-			break;
-		}
-
-	finallabel->setText (final
-			? "<font color=blue>" + tr ("Qualified") + "</font>"
-			: "<font color=red>" + tr ("Not Qualified") + "</font>");
-}
-
-void Operate::groupclicked (bool checked)
-{
-	int i;
-
-	if (checked) {
-		for (i = 0; i < PropGrp::PropBottom; i++)
-			prop[i]->setVisible (Preferences::itemstate[i]);
-		loginfo->setFont (QFont ("Bitstream Sans", 12));
-		operatebox->setStretch (0, 5);
-		finallabel->setFont (QFont ("Bitstream Sans", 12));
-		operatebox->setStretch (1, 5);
-		groupprop->setFont (QFont ("Bitstream Sans", 12));
-		operatebox->setStretch (2, 85);
-		operatebox->setStretch (3, 5);
-	} else {
-		for (i = 0; i < PropGrp::PropBottom; i++)
-			prop[i]->setVisible (false);
-		loginfo->setFont (QFont ("Bitstream Sans", 18));
-		operatebox->setStretch (0, 20);
-		finallabel->setFont (QFont ("Bitstream Sans", 60));
-		operatebox->setStretch (1, 70);
-		groupprop->setFont (QFont ("Bitstream Sans", 12));
-		operatebox->setStretch (2, 0);
-		operatebox->setStretch (3, 10);
-	}
+		prop[i]->setVisible (Preferences::itemstate[i]);
 }
